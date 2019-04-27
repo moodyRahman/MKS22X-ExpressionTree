@@ -5,9 +5,15 @@ public class ExpressionTree{
   /*return the expression as an infix notation string with parenthesis*/
   /* The sample tree would be: "(3 + (2 * 10))"     */
   public String toString(){
-    /*you are to write this method*/
-    return "";
-  }
+        /*you are to write this method*/
+        return toStringh(this);
+    }
+
+    private String toStringh(ExpressionTree tree) {
+        if(tree.isValue()) return "" + tree.getValue();
+        return "( " + toStringh(tree.getLeft()) + " " + tree.getOp() + " " + toStringh(tree.getRight()) + " )";
+    }
+
 
   /*return the expression as a postfix notation string without parenthesis*/
   /* The sample tree would be: "3 2 10 * +"     */
@@ -53,7 +59,7 @@ public class ExpressionTree{
 	  }
 	  return 0.0;
     }
-   
+
 
 
   //If you are not able to take the exam Friday, speak to me in person tomorrow.
