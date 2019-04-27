@@ -53,7 +53,7 @@ public class ExpressionTree{
 	  }
 	  return 0.0;
     }
-
+   
 
 
   //If you are not able to take the exam Friday, speak to me in person tomorrow.
