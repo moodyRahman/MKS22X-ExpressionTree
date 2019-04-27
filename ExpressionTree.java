@@ -31,9 +31,15 @@ public class ExpressionTree{
   /* The sample tree would be: "+ 3 * 2 10"     */
 
   public String toStringPrefix(){
-    /*you are to write this method*/
-    return "";
+      /*you are to write this method*/
+      return prefixh(this);
   }
+
+  private String prefixh(ExpressionTree tree) {
+      if(tree.isValue()) return "" + tree.getValue();
+      return tree.getOp() + " " + prefixh(tree.getLeft()) + " " + prefixh(tree.getRight());
+  }
+
 
   /*return the value of the specified expression tree*/
   public double evaluate(){
