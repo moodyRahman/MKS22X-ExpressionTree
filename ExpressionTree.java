@@ -1,4 +1,4 @@
-public class ExpressionTree{
+public class ExpressionTree implements PrintableNode{
 
 
 
@@ -9,7 +9,7 @@ public class ExpressionTree{
         return toStringh(this);
     }
 
-    private String toStringh(ExpressionTree tree) {
+    public String toStringh(ExpressionTree tree) {
         if(tree.isValue()) return "" + tree.getValue();
         return "( " + toStringh(tree.getLeft()) + " " + tree.getOp() + " " + toStringh(tree.getRight()) + " )";
     }
@@ -22,7 +22,7 @@ public class ExpressionTree{
         return postfixh(this);
     }
 
-    private String postfixh(ExpressionTree tree) {
+    public String postfixh(ExpressionTree tree) {
         if(tree.isValue()) return "" + tree.getValue();
         return postfixh(tree.getLeft()) + " " + postfixh(tree.getRight()) + " " + tree.getOp();
     }
@@ -35,7 +35,7 @@ public class ExpressionTree{
       return prefixh(this);
   }
 
-  private String prefixh(ExpressionTree tree) {
+  public String prefixh(ExpressionTree tree) {
       if(tree.isValue()) return "" + tree.getValue();
       return tree.getOp() + " " + prefixh(tree.getLeft()) + " " + prefixh(tree.getRight());
   }
@@ -47,7 +47,7 @@ public class ExpressionTree{
     return evalHelp(this);
     }
 
-  private double evalHelp(ExpressionTree tree){
+  public double evalHelp(ExpressionTree tree){
 	  if(tree.isValue()) {
 		  return tree.getValue();
 	  }
@@ -55,7 +55,7 @@ public class ExpressionTree{
   }
 
   /*use the correct operator on both a and b, and return that value*/
-  private double apply(char op, double a, double b){
+  public double apply(char op, double a, double b){
 	  if (op == '+'){
 		  return a+b;
 	  }
@@ -71,6 +71,11 @@ public class ExpressionTree{
 	  return 0.0;
     }
 
+    public String getText(){
+      return Double.toString(value);
+    }
+
+
 
 
   //If you are not able to take the exam Friday, speak to me in person tomorrow.
@@ -78,9 +83,9 @@ public class ExpressionTree{
 
 
 
-  private char op;
-  private double value;
-  private ExpressionTree left,right;
+  public char op;
+  public double value;
+  public ExpressionTree left,right;
 
   /*TreeNodes are immutable, so no issues with linking them across multiple
   *  expressions. The can be constructed with a value, or operator and 2
@@ -100,26 +105,26 @@ public class ExpressionTree{
   }
 
   /* accessor method for Value, precondition is that isValue() is true.*/
-  private double getValue(){
+  public double getValue(){
     return value;
   }
   /* accessor method for left, precondition is that isOp() is true.*/
-  private ExpressionTree getLeft(){
+  public ExpressionTree getLeft(){
     return left;
   }
   /* accessor method for right, precondition is that isOp() is true.*/
-  private ExpressionTree getRight(){
+  public ExpressionTree getRight(){
     return right;
   }
 
-  private boolean isOp(){
+  public boolean isOp(){
     return hasChildren();
   }
-  private boolean isValue(){
+  public boolean isValue(){
     return !hasChildren();
   }
 
-  private boolean hasChildren(){
+  public boolean hasChildren(){
     return left != null && right != null;
   }
 
